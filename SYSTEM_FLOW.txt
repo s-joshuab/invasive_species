@@ -1,0 +1,63 @@
+IAPS REGION 1 MONITOR
+Simple System Flow
+
+1. APP ENTRY
+
+User opens the web app
+    -> App shell loads navigation, top bar, and mobile navigation
+    -> User selects a sidebar page
+    -> The router displays that page
+
+2. FIELD SCAN FLOW
+
+Open AI Scanner
+    -> Capture an image or upload an image
+    -> App prepares an image preview
+    -> App requests the device location when available
+       -> If location is unavailable, a demonstration fallback location is used
+    -> User runs detection
+    -> Demo code selects a sample species and generates a confidence value
+       (This is not a real AI model inference.)
+    -> User saves the scan
+    -> Scan record and compressed thumbnail are saved in browser IndexedDB
+    -> The record appears under Recent Field Scans
+
+When offline, a saved record is marked Pending sync. The sync control changes
+pending records to Synced locally when requested or when the app's online
+recovery flow runs. There is no live server synchronization in this prototype.
+
+3. OTHER PAGE FLOWS
+
+Dashboard
+    -> Reads static sample summary, observation, and trend data
+    -> Applies the selected species filter to the displayed sample map points
+
+Hotspot Map
+    -> Reads sample hotspot, boundary, protected-area, and eradication data
+    -> User toggles overlays or selects a hotspot
+    -> App updates the map and calculates the selected buffer summary locally
+
+Species Database
+    -> Reads sample species and occurrence data
+    -> User searches or changes the display between table and cards
+    -> App filters and displays records in the browser
+
+Eradication Logs
+    -> Starts with sample eradication records
+    -> User filters records, changes the view, or creates a demonstration entry
+    -> New entries are held in page state and are not saved to a server
+
+Reports
+    -> Reads static sample model metrics and evaluation summaries
+    -> Displays comparison charts and class-level metrics
+    -> Export control shows a demonstration message; no report is generated
+
+DATA BOUNDARIES
+
+- Dashboard metrics, charts, and map observations are sample data.
+- Hotspot map layers and spatial details are local sample data.
+- Scanner predictions are simulated; selected model names do not invoke a
+  deployed model.
+- Scanner records persist in the current browser using IndexedDB.
+- Eradication entries and most page filters are held in page state.
+- The app has no production API or server-side database connection yet.

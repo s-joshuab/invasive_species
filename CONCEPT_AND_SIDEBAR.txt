@@ -1,0 +1,55 @@
+IAPS REGION 1 MONITOR
+Project Concept and Sidebar Guide
+
+PROJECT CONCEPT
+
+IAPS Region 1 Monitor is a web-based prototype for supporting the monitoring
+of Invasive Alien Plant Species (IAPS) in the Ilocos Region. It brings field
+scans, species references, hotspot maps, eradication activity, and model
+evaluation views together in one interface.
+
+The intended users are field staff, DENR and LGU personnel, and people
+reviewing regional monitoring data. The prototype is designed to help them
+review observations, identify areas that may need attention, and follow
+eradication work.
+
+SIDEBAR PANELS
+
+1. Dashboard
+   Gives a regional overview through summary cards, a detection map, species
+   charts, and monthly trends. The region and species controls filter the
+   displayed sample observations.
+
+2. AI Scanner
+   Lets a user capture an image with a camera or upload one, view a location,
+   and run a demonstration classification. A scan can be saved to the
+   browser's local IndexedDB storage and reviewed in Recent Field Scans.
+   The prediction is simulated; no real AI model is called.
+
+3. Hotspot Map
+   Shows hotspot and other spatial overlays on a map. Users can toggle
+   boundaries, heatmap, protected areas, transport buffers, elevation zones,
+   and eradication markers. Selecting a hotspot updates the local buffer
+   analysis controls.
+
+4. Species Database
+   Provides searchable species reference information in table or card view.
+   It also displays sample occurrence records, data-source descriptions, and
+   image-preprocessing steps. These screens do not train a model.
+
+5. Eradication Logs
+   Presents eradication activity by status, with filters and table or board
+   views. Users can add a demonstration log. The records shown here are
+   sample data and are held in page state.
+
+6. Reports
+   Displays sample model-comparison metrics, charts, and per-class validation
+   summaries. The export control is a demonstration; it does not download a
+   production report.
+
+PROTOTYPE NOTE
+
+This project currently uses simulated or static sample data for dashboard
+figures, map hotspots, scan predictions, and report metrics. Saved scanner
+records are stored in the user's browser. The displayed sync action updates
+local scan status only; it is not connected to a production server.
